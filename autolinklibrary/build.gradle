@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.novoda.bintray-release'
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            tasks.withType(Javadoc).all { enabled = false }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:support-annotations:$supportLibraryVersion"
+}
+
+//publish {
+//    groupId = 'com.github.armcha'
+//    artifactId = 'AutoLinkTextView'
+//    publishVersion = '0.3.0'
+//    desc = 'Auto Link Text View'
+//    licences = ['MIT']
+//    website = 'https://github.com/armcha/AutoLinkTextView'
+//}
